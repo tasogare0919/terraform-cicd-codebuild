@@ -1,0 +1,13 @@
+ci: codebuild
+notifier:
+  github:
+    token: $GITHUB_TOKEN
+    repository:
+      owner: "tasogare0919"
+      name: "terraform-cicd-codebuild"
+terraform:
+  plan:
+    template: |
+      {{ .Title }}
+      {{ .Message }}
+      {{if .Result}}<pre><code>
