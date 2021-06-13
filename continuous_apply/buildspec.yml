@@ -1,0 +1,16 @@
+version: 0.2
+
+env:
+  parameter-store:
+    GITHUB_TOKEN: "/continuout_apply/github_token"
+    #TERRAFROM_CLOUD_TOKEN: "/continuous_apply/terraform_cloud_token"
+
+phases:
+  install:
+    commands:
+      - ${CODEBUILD_SRC_DIR}/scripts/install.sh
+      - sed -e "s/_TOKEN_/${TERRAFORM_CLOUD_TOKEN}/" ${CODEBUILD_SRC_DIR}/continuous_apply/_terraformrc > ~/.terraformrc
+
+  build:
+    commands:
+      - ${CODEBUILD_SRC_DIR}/scripts/build.shcon
