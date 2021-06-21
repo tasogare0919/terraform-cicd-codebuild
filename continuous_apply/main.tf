@@ -16,7 +16,7 @@ resource "aws_codebuild_project" "continuous_apply" {
   source {
     type      = "GITHUB"
     location  = "https://github.com/tasogare0919/terraform-sandbox.git"
-    buildspec = "terraform/continuous_apply/buildspec.yml"
+    buildspec = "continuous_apply/buildspec.yml"
   }
 
   artifacts {
@@ -26,7 +26,7 @@ resource "aws_codebuild_project" "continuous_apply" {
   environment {
     type            = "LINUX_CONTAINER"
     compute_type    = "BUILD_GENERAL1_SMALL"
-    image           = "hashicorp/terraform:1.0.0"
+    image           = "hashicorp/terraform:light"
     privileged_mode = false
   }
 
@@ -57,11 +57,11 @@ resource "aws_codebuild_webhook" "continuous_apply" {
       pattern = "PULL_REQUEST_CREATED"
     }
 
-    filter {
-      exclude_matched_pattern = false
-      pattern                 = "^terraform/dev/"
-      type                    = "FILE_PATH"
-    }
+    # filter {
+    #   exclude_matched_pattern = false
+    #   pattern                 = "^terraform/dev/"
+    #   type                    = "FILE_PATH"
+    # }
   }
 
   filter_group {
@@ -70,11 +70,11 @@ resource "aws_codebuild_webhook" "continuous_apply" {
       pattern = "PULL_REQUEST_UPDATED"
     }
 
-    filter {
-      exclude_matched_pattern = false
-      pattern                 = "^terraform/dev/"
-      type                    = "FILE_PATH"
-    }
+    # filter {
+    #   exclude_matched_pattern = false
+    #   pattern                 = "^terraform/dev/"
+    #   type                    = "FILE_PATH"
+    # }
   }
 
   filter_group {
@@ -83,11 +83,11 @@ resource "aws_codebuild_webhook" "continuous_apply" {
       pattern = "PULL_REQUEST_REOPENED"
     }
 
-    filter {
-      exclude_matched_pattern = false
-      pattern                 = "^terraform/dev/"
-      type                    = "FILE_PATH"
-    }
+    # filter {
+    #   exclude_matched_pattern = false
+    #   pattern                 = "^terraform/dev/"
+    #   type                    = "FILE_PATH"
+    # }
   }
 
   filter_group {
@@ -98,13 +98,13 @@ resource "aws_codebuild_webhook" "continuous_apply" {
 
     filter {
       type    = "HEAD_REF"
-      pattern = "develop"
+      pattern = "main"
     }
 
-    filter {
-      exclude_matched_pattern = false
-      pattern                 = "^terraform/dev/"
-      type                    = "FILE_PATH"
-    }
+    # filter {
+    #   exclude_matched_pattern = false
+    #   pattern                 = "^terraform/dev/"
+    #   type                    = "FILE_PATH"
+    # }
   }
 }
