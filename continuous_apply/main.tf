@@ -56,12 +56,6 @@ resource "aws_codebuild_webhook" "continuous_apply" {
       type    = "EVENT"
       pattern = "PULL_REQUEST_CREATED"
     }
-
-    # filter {
-    #   exclude_matched_pattern = false
-    #   pattern                 = "^terraform/dev/"
-    #   type                    = "FILE_PATH"
-    # }
   }
 
   filter_group {
@@ -69,12 +63,6 @@ resource "aws_codebuild_webhook" "continuous_apply" {
       type    = "EVENT"
       pattern = "PULL_REQUEST_UPDATED"
     }
-
-    # filter {
-    #   exclude_matched_pattern = false
-    #   pattern                 = "^terraform/dev/"
-    #   type                    = "FILE_PATH"
-    # }
   }
 
   filter_group {
@@ -82,12 +70,6 @@ resource "aws_codebuild_webhook" "continuous_apply" {
       type    = "EVENT"
       pattern = "PULL_REQUEST_REOPENED"
     }
-
-    # filter {
-    #   exclude_matched_pattern = false
-    #   pattern                 = "^terraform/dev/"
-    #   type                    = "FILE_PATH"
-    # }
   }
 
   filter_group {
@@ -100,11 +82,5 @@ resource "aws_codebuild_webhook" "continuous_apply" {
       type    = "HEAD_REF"
       pattern = "main"
     }
-
-    # filter {
-    #   exclude_matched_pattern = false
-    #   pattern                 = "^terraform/dev/"
-    #   type                    = "FILE_PATH"
-    # }
   }
 }
