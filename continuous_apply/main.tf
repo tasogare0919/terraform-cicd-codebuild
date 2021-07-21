@@ -26,7 +26,7 @@ resource "aws_codebuild_project" "continuous_apply" {
   environment {
     type            = "LINUX_CONTAINER"
     compute_type    = "BUILD_GENERAL1_SMALL"
-    image           = "hashicorp/terraform:light"
+    image           = "aws/codebuild/standard:3.0"
     privileged_mode = false
   }
 
